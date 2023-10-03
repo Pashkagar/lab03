@@ -12,15 +12,23 @@ for i in range(n):
 # Выводим на экран неотсортированный список
 print("Неотсортированный список: ", numbers)
 
+# Запрашиваем направление сортировки
+direction = input("Введите направление сортировки (по возрастанию/по убыванию): ")
+
 # Начинаем сортировку пузырьком
 for i in range(len(numbers)):
     # Устанавливаем флаг, который будет показывать, были ли перестановки на данной итерации
     swapped = False
     for j in range(len(numbers) - 1):
-        # Сравниваем текущий элемент с предыдущим и, если он больше, меняем их местами
-        if numbers[j] > numbers[j + 1]:
-            numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
-            swapped = True
+        # Сравниваем текущий элемент с предыдущим и, если он больше/меньше (в зависимости от направления сортировки), меняем их местами
+        if direction == "по возрастанию":
+            if numbers[j] > numbers[j + 1]:
+                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+                swapped = True
+        elif direction == "по убыванию":
+            if numbers[j] < numbers[j + 1]:
+                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+                swapped = True
     # Если на данной итерации не было перестановок, значит список уже отсортирован и можно остановить цикл
     if not swapped:
         break
